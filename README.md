@@ -12,6 +12,9 @@
 - [ ] Gemini API
 - [ ] Prompt Stream Mod
 
+## Issure
+- [ ] Start prompt with "Enter" without text
+
 ## Pre-exec
 ### Venv
 ```
