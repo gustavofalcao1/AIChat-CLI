@@ -15,6 +15,22 @@
 ## Issure
 - [ ] Start prompt with "Enter" without text
 
+## Download
+### Git
+```
+git clone https://github.com/gustavofalcao1/AIChat-CLI.git
+cd AIChat-CLI
+```
+### Auto-Install Linux
+```
+chmod +x install.sh
+sudo ./install.sh
+```
+### Auto-Uninstall Linux
+```
+chmod +x uninstall.sh
+sudo ./uninstall.sh
+```
 ## Pre-exec
 ### Linux
 ```
