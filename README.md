@@ -19,16 +19,22 @@
 ### Git
 ```
 git clone https://github.com/gustavofalcao1/AIChat-CLI.git
+```
+```
 cd AIChat-CLI
 ```
 ### Auto-Install Linux
 ```
-chmod +x install.sh
+sudo chmod +x install.sh
+```
+```
 sudo ./install.sh
 ```
 ### Auto-Uninstall Linux
 ```
-chmod +x uninstall.sh
+sudo chmod +x uninstall.sh
+```
+```
 sudo ./uninstall.sh
 ```
 ## Pre-exec
