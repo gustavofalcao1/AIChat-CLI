@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import json
-import os
 import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+import json
 import threading
 import time
 from rich.console import Console
 from rich.spinner import Spinner
 from src.conversation_manager import load_conversations, save_conversations
+from main import load_config  # Add this line to import load_config
 from src.openai_client import initialize_openai, get_completion
 from src.styles import Color, Format, Style, Emoji
 from rich.progress import Progress, BarColumn
@@ -58,7 +60,7 @@ def main(config):
     parser.add_argument("-c", "--command", type=str, help="Command to be executed immediately")
     parser.add_argument("-f", "--file", type=str, help="Send the contents of a text file")
     parser.add_argument("--new", type=str, help="Start a new conversation with an identifier", default="default")
-    parser.add_argument("--set", type=str, help="Continue an existing conversation with an identifier", default="dafault")
+    parser.add_argument("--set", type=str, help="Continue an existing conversation with an identifier", default="default")
     parser.add_argument("--list", action='store_true', help="List all conversations")
     args = parser.parse_args()
 
@@ -211,6 +213,11 @@ def main(config):
 
 if __name__ == "__main__":
     try:
-        main()
+        config = load_config()
+        if not config:
+            print("Configurations not found. Please enter the settings.")
+            print("")
+            config = {}  # Replace with actual logic to get config
+        main(config)
     except Exception as e:
         handle_error(e)

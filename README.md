@@ -16,6 +16,10 @@
 - [ ] Start prompt with "Enter" without text
 
 ## Pre-exec
+### Linux
+```
+sudo apt install python3.12-venv binutils
+```
 ### Venv
 ```
   python -m venv venv

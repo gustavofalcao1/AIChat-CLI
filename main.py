@@ -20,8 +20,8 @@ def create_conversations(api_job):
         json.dump(default_conversation, arquivo, indent=4)
 
 def get_config():
-    api_key = input("Enter your Key Api: ")
-    api_job = input("Enter the API work: ")
+    api_key = input("Enter your API Key: ")
+    api_job = input("Enter the API job: ")
     config = {"api_key": api_key, "api_job": api_job}
     save_config(config)
     create_conversations(api_job)
