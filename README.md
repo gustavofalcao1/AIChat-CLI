@@ -24,6 +24,10 @@ sudo apt install python3.12-venv binutils
 ```
   python -m venv venv
 ```
+or
+```
+  python3 -m venv venv
+```
 ### Windows:
 ```
 venv\Scripts\activate
