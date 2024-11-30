@@ -5,7 +5,7 @@ import emoji
 
 # Função para criar arquivos de dados se não existirem
 def create_data_files():
-    data_dir = 'data'
+    data_dir = os.path.expanduser("~/.aichat")
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
     
@@ -31,14 +31,14 @@ OPTIONS_PYINSTALLER = [
 
 # Adicione arquivos de dados se existirem
 data_files = [
-    'data/conversations.json',
-    'data/log.json',
-    'data/config.json'
+    os.path.expanduser("~/.aichat/conversations.json"),
+    os.path.expanduser("~/.aichat/log.json"),
+    os.path.expanduser("~/.aichat/config.json")
 ]
 
 for data_file in data_files:
     if os.path.exists(data_file):
-        OPTIONS_PYINSTALLER.append(f'--add-data={data_file}:data')
+        OPTIONS_PYINSTALLER.append(f'--add-data={data_file}:.aichat')
 
 # Adicione o arquivo emoji.json
 if os.path.exists(emoji_json_path):

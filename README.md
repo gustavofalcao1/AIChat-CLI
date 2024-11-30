@@ -69,7 +69,10 @@ or
 ```
 python3 build.py
 ```
-
+### Linux
+```
+sudo mv dist/aichat-cli /usr/local/bin/aichat
+```
 
 ## Screenshots
 <p align="center">

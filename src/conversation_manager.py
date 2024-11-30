@@ -5,11 +5,11 @@ import sys
 def get_data_file_path(filename):
     if getattr(sys, 'frozen', False):
         # Executando como um executável gerado pelo PyInstaller
-        base_path = os.path.dirname(sys.executable)
+        base_path = os.path.expanduser("~/.aichat")
     else:
         # Executando como um script Python normal
         base_path = os.path.dirname(__file__)
-    return os.path.join(base_path, 'data', filename)
+    return os.path.join(base_path, filename)
 
 CONVERSATIONS_FILE = get_data_file_path('conversations.json')
 CONVERSATIONS_FILE_LOG = get_data_file_path('log.json')
