@@ -1,0 +1,58 @@
+#!/bin/bash
+set -e
+
+# Function to check sudo access
+check_sudo() {
+    if ! sudo -n true 2>/dev/null; then
+        echo "Please run this script with sudo privileges"
+        echo "Example: sudo ./postinst"
+        exit 1
+    fi
+}
+
+# Check for sudo access before proceeding
+check_sudo
+
+# Check if running as root
+if [ "$EUID" -ne 0 ]; then
+    echo "This script must be run as root (sudo)"
+    exit 1
+fi
+
+# Directory where the repository should be cloned
+TARGET_DIR="/opt/aichat"
+
+# URL of the repository to clone
+REPO_URL="https://github.com/gustavofalcao1/aichat-cli.git"
+
+# Create target directory with proper permissions if it doesn't exist
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Creating target directory..."
+    mkdir -p "$TARGET_DIR"
+    chown root:root "$TARGET_DIR"
+    chmod 755 "$TARGET_DIR"
+fi
+
+# Clone the repository if the directory is empty
+if [ -z "$(ls -A $TARGET_DIR)" ]; then
+    echo "Cloning repository..."
+    git clone "$REPO_URL" "$TARGET_DIR"
+    # Fix permissions after cloning
+    chown -R root:root "$TARGET_DIR"
+fi
+
+# Navigate to the directory
+cd "$TARGET_DIR"
+
+# Ensure install.sh is executable
+if [ ! -x "install.sh" ]; then
+    chmod +x install.sh
+fi
+
+# Execute the installation script
+echo "Running installation script..."
+./install.sh
+
+echo "Installation completed successfully."
+
+exit 0

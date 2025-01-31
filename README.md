@@ -40,7 +40,7 @@ sudo ./uninstall.sh
 ## Pre-exec
 ### Linux
 ```
-sudo apt install python3.12-venv binutils
+sudo apt install -y python3.10 python3.10-venv python3-pip binutils
 ```
 ### Venv
 ```
