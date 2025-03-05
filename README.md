@@ -1,4 +1,7 @@
 # AiChat CLI
+AIChat-CLI is a user-friendly command-line interface (CLI) application built with Python that leverages the power of AI to provide intelligent conversational capabilities. This project aims to offer seamless integration with AI-driven chat functionalities, making it an ideal tool for developers and enthusiasts looking to interact with AI directly from their terminals, dispensing with the need for a graphical interface to function.
+  
+## Requirements
 * Python 3.X
 * Venv
 * OpenAI API
