@@ -1,109 +1,141 @@
-# AiChat CLI
-AIChat-CLI is a user-friendly command-line interface (CLI) application built with Python that leverages the power of AI to provide intelligent conversational capabilities. This project aims to offer seamless integration with AI-driven chat functionalities, making it an ideal tool for developers and enthusiasts looking to interact with AI directly from their terminals, dispensing with the need for a graphical interface to function.
-  
-## Requirements
-* Python 3.X
-* Venv
-* OpenAI API
-  
-## Features
-- [x] OpenAI API
-- [x] GPT-4o
-- [x] Code Block
-- [x] Markdown Text
-- [x] Loading Prompt Wait
-- [ ] Gemini API
-- [ ] Prompt Stream Mod
+# 🤖 AIChat-CLI
 
-## Issure
-- [ ] Start prompt with "Enter" without text
+**AIChat-CLI** is a powerful and user-friendly command-line tool built in **Python** to provide intelligent conversational capabilities directly from the terminal. Designed with developers and tech enthusiasts in mind, it integrates seamlessly with the **OpenAI API** (GPT-4o), allowing real-time, markdown-formatted, AI-assisted interaction — all without requiring a graphical interface.
 
-## Download
-### Git
-```
+---
+
+## ✨ Features
+
+- ✅ **OpenAI GPT-4o Support**
+- ✅ **Code block rendering**
+- ✅ **Markdown formatting**
+- ✅ **Loading indicators**
+- 🛠️ **Coming soon:**
+  - Gemini API integration
+  - Prompt stream mod
+
+---
+
+## ⚙️ Requirements
+
+- Python `3.10+`
+- `venv` (Python Virtual Environment)
+- OpenAI API Key
+- Linux, macOS, or Windows
+
+---
+
+## 📦 Installation
+
+### 🔻 Clone the repository:
+```bash
 git clone https://github.com/gustavofalcao1/AIChat-CLI.git
-```
-```
 cd AIChat-CLI
 ```
-### Auto-Install Linux
-```
+
+### 🚀 Auto-install (Linux only):
+```bash
 sudo chmod +x install.sh
-```
-```
 sudo ./install.sh
 ```
-### Auto-Uninstall Linux
-```
+
+### 🧹 Auto-uninstall (Linux only):
+```bash
 sudo chmod +x uninstall.sh
-```
-```
 sudo ./uninstall.sh
 ```
-## Pre-exec
-### Linux
-```
+
+---
+
+## 🧰 Pre-execution Setup
+
+### 📦 Linux Dependencies:
+```bash
 sudo apt install -y python3.10 python3.10-venv python3-pip binutils
 ```
-### Venv
-```
-  python -m venv venv
-```
-or
-```
-  python3 -m venv venv
-```
-### Windows:
-```
-venv\Scripts\activate
-```
-### Unix or macOS:
-```
+
+### 🐍 Create virtual environment:
+```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
-## Exec
-### Dependences
+
+For **Windows**:
+```powershell
+venv\Scripts\activate
 ```
+
+---
+
+## ▶️ Execution
+
+### Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
-### Setup
-```
-python setup.py install
-```
-or
-```
-python3 setup.py install
-```
-### Run
-```
+
+### Run the CLI:
+```bash
 python main.py
 ```
-or
-```
+Or with Python 3 explicitly:
+```bash
 python3 main.py
 ```
-### Help
-```
+
+### View CLI options:
+```bash
 python main.py -h
 ```
-or
-```
-python3 main.py -h
-```
-## Build
-```
+
+---
+
+## 🛠 Build
+
+To build a standalone binary (Linux):
+```bash
 python build.py
-```
-or
-```
+# or
 python3 build.py
 ```
-### Linux
-```
+
+Then move the binary to system path:
+```bash
 sudo mv dist/aichat-cli /usr/local/bin/aichat
 ```
 
-## Screenshots
+Now you can run:
+```bash
+aichat
+```
+
+---
+
+## 🖼️ Screenshots
+
 <p align="center">
-  <img src="screenshots/screen1.png" alt="AIChat CLI")/>
+  <img src="screenshots/screen1.png" alt="AIChat CLI" />
 </p>
+
+---
+
+## 🐞 Known Issues
+
+- [ ] Pressing `Enter` with an empty prompt triggers execution — should be ignored
+- [ ] Duplciated logs file, on ``~/`` path and ``this root project`` path
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👤 Author
+**Gustavo Falcão**  
+[GitHub @gustavofalcao1](https://github.com/gustavofalcao1)  
+[Project Repository](https://github.com/gustavofalcao1/AIChat-CLI)
+
+---
+
