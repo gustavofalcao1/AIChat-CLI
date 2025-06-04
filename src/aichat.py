@@ -93,28 +93,35 @@ def main(config):
             console.print(f"- {convo_id}")
         return
 
-    if args.new:
-        conversation_id = args.new
-        if conversation_id in conversations:
-            if ask_to_continue(conversation_id):
-                args.set = conversation_id
-                args.new = None
-            else:
-                console.print("Operation cancelled. Please provide a different identifier to start a new conversation.")
-                return
-        else:
-            context = [{"role": "system", "content": args.prompt}]
-            conversations[conversation_id] = context
-            console.print(f"New conversation '{conversation_id}' started.")
+    conversation_id = "default" # Default conversation_id
 
-    if args.set:
+    if args.set != "default":
         conversation_id = args.set
-        if conversation_id not in conversations:
-            console.print(f"Conversation with the identifier '{conversation_id}' not found.")
-            args.new
+    elif args.new != "default":
+        conversation_id = args.new
+
+    if args.new != "default" and args.new == conversation_id and conversation_id in conversations:
+        if not ask_to_continue(conversation_id):
+            console.print("Operation cancelled. Please provide a different identifier to start a new conversation or use --set to continue.")
             return
+        # If user wants to continue, conversation_id is already set, and context will be loaded.
+
+    # Determine if --set was explicitly used and is the source of conversation_id
+    used_set_arg = args.set != "default"
+
+    if conversation_id in conversations:
         context = conversations[conversation_id]
         console.print(f"Continuing conversation '{conversation_id}'.")
+    else:
+        # If --set was used for a non-existent conversation, error out
+        if used_set_arg and args.set == conversation_id:
+            console.print(Style.ERROR + Emoji.ERROR + f" Error: Conversation '{conversation_id}' not found. Use --new to create it." + Format.END)
+            return # Or sys.exit(1)
+
+        # Otherwise (e.g., using --new or default for a new conversation), create it
+        context = [{"role": "system", "content": args.prompt}]
+        conversations[conversation_id] = context
+        console.print(f"New conversation '{conversation_id}' started.")
 
     if args.message:
         context.append({"role": "user", "content": args.message})
@@ -216,10 +223,10 @@ def main(config):
 if __name__ == "__main__":
     try:
         config = load_config()
-        if not config:
-            print("Configurations not found. Please enter the settings.")
-            print("")
-            config = {}  # Replace with actual logic to get config
+        if not config or not config.get("api_key") or not config.get("api_job"):
+            print("Error: Configuration is missing or incomplete (api_key or api_job).")
+            print("Please run the application via the main 'main.py' script in the project root to configure it if needed.")
+            sys.exit(1)
         main(config)
     except Exception as e:
         handle_error(e)
