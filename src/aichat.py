@@ -3,7 +3,7 @@
 import argparse
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import json
 import threading
 import time
@@ -166,6 +166,8 @@ def main(config):
         try:
             print(Style.USER + Emoji.USER + " user-aichat ↴" + Format.END)
             user_input = console.input()
+            if not user_input.strip():
+                continue
 
             if user_input.lower() == "exit()":
                 break
