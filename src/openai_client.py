@@ -3,9 +3,12 @@ from openai import OpenAI
 
 client = None
 
-def initialize_openai(api_key):
+def initialize_openai(api_url, api_key):
     global client
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(
+        base_url=api_url,
+        api_key=api_key
+    )
 
 
 def get_completion(messages, model):

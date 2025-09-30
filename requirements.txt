@@ -1,2 +1,6 @@
 setuptools
 pyinstaller
+rich
+openai
+emoji
+pyperclip

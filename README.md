@@ -1,17 +1,16 @@
 # 🤖 AIChat-CLI
 
-**AIChat-CLI** is a powerful and user-friendly command-line tool built in **Python** to provide intelligent conversational capabilities directly from the terminal. Designed with developers and tech enthusiasts in mind, it integrates seamlessly with the **OpenAI API** (GPT-4o), allowing real-time, markdown-formatted, AI-assisted interaction — all without requiring a graphical interface.
+**AIChat-CLI** is a powerful and user-friendly command-line tool built in **Python** to provide intelligent conversational capabilities directly from the terminal. Designed with developers and tech enthusiasts in mind, it integrates seamlessly with the **OpenAI API**, allowing real-time, markdown-formatted, AI-assisted interaction — all without requiring a graphical interface.
 
 ---
 
 ## ✨ Features
 
-- ✅ **OpenAI GPT-4o Support**
+- ✅ **Support for any OpenAI API type (GPT-4o, GPT-3.5, etc.)**
 - ✅ **Code block rendering**
 - ✅ **Markdown formatting**
 - ✅ **Loading indicators**
 - 🛠️ **Coming soon:**
-  - Gemini API integration
   - Prompt stream mod
 
 ---

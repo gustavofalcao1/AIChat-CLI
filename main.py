@@ -25,9 +25,11 @@ def create_conversations(api_job):
         json.dump(default_conversation, arquivo, indent=4)
 
 def get_config():
+    api_url = input("Enter the API URL (default: https://api.openai.com/v1): ") or "https://api.openai.com/v1"
     api_key = input("Enter your API Key: ")
+    api_model = input("Enter the API model (default: openai/gpt-4o): ") or "openai/gpt-4o"
     api_job = input("Enter the API job: ")
-    config = {"api_key": api_key, "api_job": api_job}
+    config = {"api_url": api_url,"api_key": api_key, "api_job": api_job, "api_model": api_model}
     save_config(config)
     create_conversations(api_job)
     return config

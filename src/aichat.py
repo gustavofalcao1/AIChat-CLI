@@ -50,12 +50,17 @@ def ask_to_continue(conversation_id):
         console.print("Please answer 'y[yes]' or 'n[no]'.")
 
 def main(config):
+    api_url = config.get("api_url")
     api_key = config.get("api_key")
     api_job = config.get("api_job")
+    api_model = config.get("api_model")
 
     parser = argparse.ArgumentParser(description="AI Chat CLI")
+    parser.add_argument("-u", "--api_url", type=str, help="OpenAI API URL", default=api_url)
     parser.add_argument("-k", "--api_key", type=str, help="OpenAI API Key", default=api_key)
-    parser.add_argument("-m", "--message", type=str, help="Initial message to send to AI Chat")
+    parser.add_argument("-m", "--api_model", type=str, help="API Model", default=api_model)
+    parser.add_argument("-j", "--api_job", type=str, help="API Job", default=api_job)
+    parser.add_argument("-t", "--text", type=str, help="Initial message to send to AI Chat")
     parser.add_argument("-p", "--prompt", type=str, help="Initial prompt to configure the AI Chat", default=api_job)
     parser.add_argument("-c", "--command", type=str, help="Command to be executed immediately")
     parser.add_argument("-f", "--file", type=str, help="Send the contents of a text file")
@@ -71,16 +76,14 @@ def main(config):
         console.print("Please provide the OpenAI API key using the -k argument or set the OPENAI_API_KEY environment variable.")
         return
 
-    initialize_openai(args.api_key)
+    initialize_openai(args.api_url, args.api_key)
     conversations = load_conversations()
 
-    brain = "gpt"
-    model = "gpt-4o"
-    model_version = "4o"
+    key= args.api_key
+    model = args.api_model
 
     console.print("======= AI Chat CLI =======")
-    console.print("Brain:", brain.upper())
-    console.print("Model:", brain.upper()+"-"+model_version)
+    console.print("Brain:", model)
     console.print("Job:", "'"+prompt+"'")
     console.print("")
     console.print("(typing 'exit()' for quit)")
@@ -116,8 +119,8 @@ def main(config):
         context = conversations[conversation_id]
         console.print(f"Continuing conversation '{conversation_id}'.")
 
-    if args.message:
-        context.append({"role": "user", "content": args.message})
+    if args.text:
+        context.append({"role": "user", "content": args.text})
         try:
             response = get_completion(context, model)
             context.append({"role": "assistant", "content": response})
@@ -175,7 +178,7 @@ def main(config):
                 continue
 
             if user_input.startswith("/show-api_key"):
-                console.print(f"Current api_key: {api_key}")
+                console.print(f"Current api_key: {key}")
                 continue
 
             if user_input.startswith("/nc"):
